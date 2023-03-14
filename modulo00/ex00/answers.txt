@@ -1,0 +1,4 @@
+pip list
+pip show numpy / conda info numpy
+pip uninstall numpy
+pip install --upgrade --force-reinstall numpy
