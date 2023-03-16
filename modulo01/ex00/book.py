@@ -1,24 +1,17 @@
 from datetime import datetime
+from recipe import Recipe
 
 class Book:
-	def __init__(self, name:str, last_upd:datetime, crt_dt:datetime, rcp_lst:dict):
-		if len(name) == 0 or type(name) != str:
-			return(print("Input error"))
+	def __init__(self, name):
 		self.name = name
-		if type(last_upd) != datetime:
-			return(print("Input error"))
-		self.last_upd = last_upd
-		if type(crt_dt) != datetime:
-			return(print("Input error"))
-		self.crt_dt = crt_dt
-		if type(rcp_lst) != dict:
-			return(print("Input error"))
-		if len(rcp_lst) != 3
-		self.rcp_lst = rcp_lst
+		self.last_upd = datetime.now()
+		self.crt_dt = datetime.now()
+		self.rcp_lst = {"starter" : [], "lunch" : [], "dessert" : []}
 
-	def get_current_time
 	def get_recipe_by_name(self, name:str):
 		"""Imprime la receta con el nombre \texttt{name} y devolver la instancia"""
+		"""Busca las comidas que se encuentran dentro del diccionario y entonces las va
+		ciclando hasta que encuentra la que sea igual que la busca y devuelve la receta"""
 		if type(name) != str:
 			return(print("error de tipo"))
 		for meals in self.rcp_lst.values():
@@ -30,8 +23,10 @@ class Book:
 
 	def get_recipes_by_types(self, recipe_type:str) -> list:
 		"""Devuelve todas las recetas dado un recipe_type """
+		"""Verificamos si esta el tipo de comida en el diccionario y posteriormente hacemos
+		una lista con las recetas que se encuentran dentro de un tpo de comida"""
 		if recipe_type not in self.rcp_lst.keys():
-			print("No esta la receta en el libro")
+			print("No esta la comida en el libro")
 			return (None)
 		meal_names = [meal.name for meal in self.rcp_lst[recipe_type]]
 		return (meal_names)
@@ -39,10 +34,12 @@ class Book:
 
 	def add_recipe(self, recipe: Recipe) -> None:
 		"""Añade una receta al libro y actualiza last_update"""
+		"""Verificamos que la receta sea de la clase Recipe, buscas en el diccionario
+		la key que cuadra con tu recipe_type y unes tu receta a esa key con append"""
 		if not isinstance(recipe, Recipe):
-			print("la receta no existe")
+			print("la receta no es el del tipo que debe de ser")
 			return
-		self.rcp_lst[recipe.recipe_type].append(recipe)
-		self.last_upd = self.get_current_time()
+		self.rcp_lst[recipe.rtype].append(recipe)
+		self.last_upd = datetime.now()
 
 

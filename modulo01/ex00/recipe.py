@@ -18,7 +18,7 @@ class Recipe:
 			self.desc = ""
 		else:
 			self.desc = desc
-		if (rtype != "entrante" and rtype != "comida" and rtype != "postre") or len(rtype) == 0 or type(desc) != str:
+		if (rtype != "starter" and rtype != "lunch" and rtype != "dessert") or len(rtype) == 0 or type(desc) != str:
 			return(print("Input error del rtype"))
 		self.rtype = rtype
 
@@ -29,12 +29,12 @@ class Recipe:
 		return txt
 	
 
-a = Recipe("juan", 4, 2, ["awita"], "holaa", "comida")
-def print_information(a):
-	print (a.name)
-	print (a.ing)
-	print (a.rtype)
+# a = Recipe("juan", 4, 2, ["awita"], "holaa", "comida")
+# def print_information(a):
+# 	print (a.name)
+# 	print (a.ing)
+# 	print (a.rtype)
 
 
-print_information(a)
-print(a)
+# print_information(a)
+# print(a)
