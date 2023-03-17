@@ -17,6 +17,23 @@ class Account(object):
 
 	def transfer(self, amount):
 		self.value += amount
+	
+	def is_corrupted(self):
+		args = list(self.__dict__.keys())
+		if not len(args) % 2 == 0:
+			return(True)
+		
+		if "name" not in args \
+			or "id" not in args \
+			or "value" not in args:
+			return (True)
+		
+		for arg in args:
+			if arg[0] == "b":
+				return(True)
+			if not arg.startswith("zip") or not arg.startswith("addr"):
+				return(True)
+		return (False)
 
 class Bank(object):
 		"""The bank"""
@@ -52,10 +69,17 @@ class Bank(object):
 		"""
 		origin_account = self.get_account(origin)
 		dest_account = self.get_account(dest)
-		if not isinstance(origin_account, Account) or not isinstance(dest_account, Account) 
-			
-			or amount < 0:
+		if not isinstance(origin_account, Account) or not isinstance(dest_account, Account):
 			return (False)
+		elif not origin_account.is_corrupted() and not dest_account.is_corrupted():
+			return (False)
+		value = origin_account.value
+		if value < amount or value < 0:
+			return (False)
+		origin_account.value -= amount
+		dest_account.value.transfer(amount)
+		return (True)
+			
 		
 	def fix_account(self, name):
 		""" fix account associated to name if corrupted
