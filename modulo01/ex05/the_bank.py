@@ -1,5 +1,7 @@
 class Account(object):
+
 	ID_COUNT = 1
+
 	def __init__(self, name, **kwargs):
 		self.__dict__.update(kwargs)
 		self.id = self.ID_COUNT
@@ -86,4 +88,36 @@ class Bank(object):
 			@name:   str(name) of the account
 			@return  True if success, False if an error occured
 		"""
-		# ... Your code ...
+		if not isinstance(name, str):
+			return (False)
+		for count in self.accounts:
+			if (count.name == name):
+				target_count = count
+				break
+		if target_count.name == name:
+			return (False)
+		if (not hasattr(target_count, "name") or type(count.__dict__['name'] != str)):
+			target_count.name = "user id: " + str(target_count.ID_COUNT)
+		if (not hasattr(target_count, "id") or not isinstance(target_count.id, int)):
+			target_count.id = Account.ID_COUNT
+			Account.ID_COUNT += 1
+		if (not hasattr(target_count, "value") or not (isinstance(target_count.value, int) or isinstance(target_count.value, float))):
+			target_count.value = 0
+
+		zip = 0
+		addr = 0
+
+		for key in target_count.__dict__.keys():
+			if key.startswith("b"):
+				del key
+			if key.startswith("zip"):
+				zip = 1
+			if key.startswith("addr"):
+				addr = 1
+		if (zip == 0):
+			target_count.zip = 0
+		if (addr == 0):
+			target_count.addr = "no address defined"
+		if (len(target_count.__dict__.keys()) % 2 != 0):
+			return False
+		return True
