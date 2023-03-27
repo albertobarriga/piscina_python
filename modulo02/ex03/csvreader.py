@@ -6,7 +6,7 @@
 #    By: abarriga <abarriga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 11:03:31 by abarriga          #+#    #+#              #
-#    Updated: 2023/03/22 12:21:58 by abarriga         ###   ########.fr        #
+#    Updated: 2023/03/27 13:32:14 by abarriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ class CsvReader():
 		self.file = open(self.filename, "r")
 		return self
 
-	def __exit__(self, ):
+	def __exit__(self, exc_type, exc_value, exc_traceback):
 		self.file.close()
 		
 
