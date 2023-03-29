@@ -6,7 +6,7 @@
 #    By: abarriga <abarriga@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/27 17:13:12 by abarriga          #+#    #+#              #
-#    Updated: 2023/03/27 20:53:08 by abarriga         ###   ########.fr        #
+#    Updated: 2023/03/29 10:29:22 by abarriga         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,3 +70,20 @@ class TinyStatistician:
         res = sqrt(self.var(lst))
         return res
         
+if __name__ == '__main__':
+	a = [1, 42, 300, 10, 59]
+	b =[]
+	tstat = TinyStatistician()
+
+	print(tstat.mean(b))
+	print("          --> Expected result: None")
+	print(tstat.mean(a))
+	print("          --> Expected result: 82.4")
+	print(tstat.median(a))
+	print("          --> Expected result: 42.0")
+	print(tstat.quartile(a))
+	print("          --> Expected result: [10.0, 59.0]")
+	print(tstat.var(a))
+	print("          --> Expected result: 12279.439999999999")
+	print(tstat.std(a))
+	print("          --> Expected result: 110.81263465868862")
